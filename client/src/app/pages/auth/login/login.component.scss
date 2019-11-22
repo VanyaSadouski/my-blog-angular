@@ -1,0 +1,18 @@
+@import "../../../../styles/local/main";
+
+.auth {
+  width: 100vw;
+  height: 100vh;
+
+  .hidden-icon {
+    cursor: pointer;
+  }
+
+  @include material-color($background, accent, 300);
+
+  &__register-link {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

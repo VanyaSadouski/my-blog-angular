@@ -1,0 +1,7 @@
+@import '../global/material';
+
+@mixin material-color($property, $key, $contrast: 500) {
+  $color: map-get($app-theme, $key);
+
+  #{$property}: mat-color($color, $contrast) !important;
+}

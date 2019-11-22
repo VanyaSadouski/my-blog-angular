@@ -1,0 +1,48 @@
+<div class="auth pt-5">
+  <mat-card class="w-50 mx-auto">
+    <mat-card-content class="d-flex justify-content-center  mb-4">
+      <form
+        class="w-75 d-flex flex-wrap"
+        [formGroup]="form"
+        autocomplete="off"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field class="w-100">
+          <input
+            matInput
+            placeholder="Логин*"
+            formControlName="username"
+            [errorStateMatcher]="formErrorStateMatcher"
+          />
+          <mat-error *ngIf="form.get('username').hasError('required')">
+            Поле <strong>Обязательно</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <input
+            matInput
+            [type]="'text'"
+            placeholder="Пароль*"
+            formControlName="password"
+            type="password"
+            [errorStateMatcher]="formErrorStateMatcher"
+          />
+
+          <mat-error *ngIf="form.get('password').hasError('required')">
+            Поле <strong>Обязательно</strong>
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <a class="auth__register-link" (click)="toLogin()">
+            Авторизация
+          </a>
+        </div>
+
+        <div class="w-100 d-flex justify-content-end">
+          <button mat-raised-button type="submit">Зарегистрировать</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

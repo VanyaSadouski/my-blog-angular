@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'RobotoLocal';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/roboto/roboto-300.eot'); /* For IE6-8 */
+  src: url('/assets/fonts/roboto/roboto-300.woff2') format('woff2'),
+    url('/assets/fonts/roboto/roboto-300.woff') format('woff'),
+    url('/assets/fonts/roboto/roboto-300.ttf') format('truetype');
+}
