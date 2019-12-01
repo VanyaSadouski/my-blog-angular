@@ -12,6 +12,16 @@ var UserSchema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    role: {
+      type: String,
+      unique: false,
+      required: true
     }
   },
   {
@@ -40,13 +50,12 @@ UserSchema.pre("save", function(next) {
   }
 });
 
-UserSchema.methods.comparePassword = (passw, cb) => {
-  bcrypt.compare(passw, this.password, (err, isMatch) => {
+UserSchema.methods.comparePassword = function(passw, cb) {
+  bcrypt.compare(passw, this.password, function(err, isMatch) {
     if (err) {
       return cb(err);
     }
     cb(null, isMatch);
   });
 };
-
 module.exports = mongoose.model("User-model", UserSchema);

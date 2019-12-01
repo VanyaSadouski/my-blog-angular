@@ -1,12 +1,8 @@
-<div class="auth pt-5">
+<div class="auth">
   <mat-card class="w-50 mx-auto">
     <mat-card-content class="d-flex justify-content-center  mb-4">
-      <form
-        class="w-75 d-flex flex-wrap"
-        [formGroup]="form"
-        autocomplete="off"
-        (ngSubmit)="onSubmit()"
-      >
+      <form class="w-75 d-flex flex-wrap" [formGroup]="form" autocomplete="off">
+        <div *ngIf="!isAuthorized" class="auth-error">Попробуйте снова</div>
         <mat-form-field class="w-100">
           <input
             matInput
@@ -48,7 +44,7 @@
         </div>
 
         <div class="w-100 d-flex justify-content-end">
-          <button mat-raised-button type="submit">Войти</button>
+          <button mat-raised-button (click)="onSubmit()">Войти</button>
         </div>
       </form>
     </mat-card-content>

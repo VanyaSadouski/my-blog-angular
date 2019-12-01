@@ -1,4 +1,4 @@
-<div class="auth pt-5">
+<div class="auth">
   <mat-card class="w-50 mx-auto">
     <mat-card-content class="d-flex justify-content-center  mb-4">
       <form
@@ -18,6 +18,16 @@
             Поле <strong>Обязательно</strong>
           </mat-error>
         </mat-form-field>
+
+          <mat-form-field class="w-100">
+            <input matInput
+                   placeholder="Email*"
+                   formControlName="email"
+                   [errorStateMatcher]="formErrorStateMatcher" />
+            <mat-error *ngIf="form.get('email').hasError('required')">
+              Поле <strong>Обязательно</strong>
+            </mat-error>
+          </mat-form-field>
 
         <mat-form-field class="w-100">
           <input

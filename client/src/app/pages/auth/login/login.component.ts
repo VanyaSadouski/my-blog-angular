@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginService } from "@core/services";
 import { FormErrorStateMatcher } from "@core/utils";
-import { take } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "app-login",
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
   public formErrorStateMatcher = new FormErrorStateMatcher();
   public isHidden = true;
+  public isAuthorized = true;
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   public toRegistration() {
-    this.router.navigate(["register"]);
+    this.router.navigate(["/auth/register"]);
   }
 
   public onSubmit(): void {
@@ -43,18 +46,18 @@ export class LoginComponent implements OnInit {
 
     this.authService
       .login(this.form.value)
-      .pipe(take(1))
-      .subscribe(
-        res => {
-          console.log(res);
-          if (res.token) {
-            localStorage.setItem("token", res.token);
-            this.router.navigate(["home"]);
-          }
-        },
-        err => {
-          console.log(err);
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => {
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          this.router.navigate(["/home"]);
+        } else {
+          this.anauthorized();
         }
-      );
+      });
+  }
+
+  public anauthorized() {
+    this.isAuthorized = false;
   }
 }

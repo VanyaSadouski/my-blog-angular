@@ -11,7 +11,6 @@ const apiUrl = "http://localhost:3000/api/auth/";
 export class LoginService {
   @Output() isLoggedIn: EventEmitter<any> = new EventEmitter();
   loggedInStatus = false;
-  redirectUrl: string;
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +19,7 @@ export class LoginService {
       tap(() => {
         this.isLoggedIn.emit(true);
         this.loggedInStatus = true;
+        console.log("--->", data);
       }),
       catchError(this.handleError("login", []))
     );
@@ -41,6 +41,8 @@ export class LoginService {
       catchError(this.handleError("register", []))
     );
   }
+
+  setRole(role: string) {}
 
   private handleError<T>(operation = "operation", result?: any) {
     return (error: any): Observable<any> => {

@@ -1,0 +1,12 @@
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-base-layout",
+  templateUrl: "./base-layout.component.html",
+  styleUrls: ["./base-layout.component.scss"]
+})
+export class BaselayoutComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit() {}
+}

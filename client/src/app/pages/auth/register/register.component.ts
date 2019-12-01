@@ -28,12 +28,13 @@ export class RegisterComponent implements OnInit {
   public createForm(): void {
     this.form = this.fb.group({
       username: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
   }
 
   public toLogin() {
-    this.router.navigate(["login"]);
+    this.router.navigate(["/auth/login"]);
   }
 
   public onSubmit(): void {

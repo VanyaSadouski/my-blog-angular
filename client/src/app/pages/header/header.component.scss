@@ -1,0 +1,25 @@
+.mat-toolbar {
+  height: 90px;
+  background-color: #000;
+}
+
+.blog-header {
+  .logo-block {
+    &__blog {
+      display: block;
+      width: 124px;
+      height: 50px;
+      background: url("/assets/images/pile-of-dung.png") no-repeat;
+      background-size: contain;
+    }
+  }
+  .material-icons {
+    color: white !important;
+  }
+
+  &__logout-btn {
+    display: flex !important;
+    color: #fff;
+    cursor: pointer;
+  }
+}
