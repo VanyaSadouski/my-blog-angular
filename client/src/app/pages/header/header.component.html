@@ -1,15 +1,37 @@
 <mat-toolbar class="px-0 py-3">
   <div
-    class="blog-header w-100 d-flex justify-content-between align-items-center mr-3 ml-1 mr-md-5"
+    class="blog-header w-100 d-flex justify-content-between align-items-center section-padding-x"
   >
-    <div class="logo-block d-flex align-items-center px-3 py-2">
+    <div class="logo-block d-flex align-items-center">
       <div class="logo-block__blog mr-3"></div>
     </div>
 
-    <div class="blog-header__logout-btn" matTooltip="Выйти">
-      <i class="material-icons" (click)="onLogout()">
-        input
-      </i>
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="width: 10%;"
+    >
+      <button
+        class="blog-header__menu"
+        mat-button
+        [matMenuTriggerFor]="belowMenu"
+      >
+        Menu
+      </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Posts</button>
+        <button mat-menu-item>Categories</button>
+        <button mat-menu-item *ngIf="userInfo.role === 'admin'">
+          Create post
+        </button>
+        <button mat-menu-item *ngIf="userInfo.role === 'admin'">
+          Create category
+        </button>
+      </mat-menu>
+      <div class="blog-header__logout-btn" matTooltip="Выйти">
+        <i class="material-icons" (click)="onLogout()">
+          input
+        </i>
+      </div>
     </div>
   </div>
 </mat-toolbar>

@@ -17,9 +17,17 @@
     color: white !important;
   }
 
+  &__menu {
+    color: white !important;
+  }
+
   &__logout-btn {
     display: flex !important;
     color: #fff;
     cursor: pointer;
   }
+}
+
+.mat-button {
+  color: white !important;
 }

@@ -1,4 +1,4 @@
-@import '../local/vars';
+@import "../local/vars";
 
 html {
   font-size: 14px;
@@ -6,4 +6,10 @@ html {
 
 body {
   font-family: $roboto !important;
+  background: #e7ebf0 !important;
+}
+
+.section-padding-x {
+  padding-left: 5rem !important;
+  padding-right: 5rem !important;
 }

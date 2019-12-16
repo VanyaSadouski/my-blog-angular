@@ -9,12 +9,15 @@ import { take } from "rxjs/operators";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  constructor(private authService: LoginService, private router: Router) {}
+  public userInfo: any;
+  constructor(private loginService: LoginService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userInfo = this.loginService.user;
+  }
 
   private onLogout() {
-    this.authService
+    this.loginService
       .logout()
       .pipe(take(1))
       .subscribe(() => {

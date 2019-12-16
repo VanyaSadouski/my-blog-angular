@@ -43,7 +43,12 @@ router.post("/login", function(req, res) {
         user.comparePassword(req.body.password, function(err, isMatch) {
           if (isMatch && !err) {
             var token = jwt.sign(user.toJSON(), config.secret);
-            res.json({ success: true, token: "JWT " + token });
+            // res.json({ success: true, token: "JWT " + token, user });
+            res.json({
+              success: true,
+              token: "JWT " + token,
+              user
+            });
           } else {
             res.status(401).send({
               success: false,

@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, Injectable, Output } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
@@ -12,14 +13,16 @@ export class LoginService {
   @Output() isLoggedIn: EventEmitter<any> = new EventEmitter();
   loggedInStatus = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+  public user: object;
 
   login(data: any): Observable<any> {
     return this.http.post<any>(apiUrl + "login", data).pipe(
-      tap(() => {
+      tap(userInfo => {
         this.isLoggedIn.emit(true);
         this.loggedInStatus = true;
-        console.log("--->", data);
+        this.user = userInfo.user;
       }),
       catchError(this.handleError("login", []))
     );
@@ -30,6 +33,8 @@ export class LoginService {
       tap(() => {
         this.isLoggedIn.emit(false);
         this.loggedInStatus = false;
+        localStorage.removeItem("token");
+        this.router.navigate(["auth/login"]);
       }),
       catchError(this.handleError("logout", []))
     );
@@ -41,8 +46,6 @@ export class LoginService {
       catchError(this.handleError("register", []))
     );
   }
-
-  setRole(role: string) {}
 
   private handleError<T>(operation = "operation", result?: any) {
     return (error: any): Observable<any> => {
