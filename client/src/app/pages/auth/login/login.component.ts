@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res.token) {
           localStorage.setItem("token", res.token);
+          localStorage.setItem("user", JSON.stringify(res.user));
           this.router.navigate(["/home"]);
         } else {
           this.anauthorized();

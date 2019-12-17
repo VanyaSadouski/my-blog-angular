@@ -101,8 +101,13 @@ section {
   display: block;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   line-height: 1;
+  height: 100%;
 }
 
 ol,
@@ -119,7 +124,7 @@ blockquote::before,
 blockquote::after,
 q::before,
 q::after {
-  content: '';
+  content: "";
   content: none;
 }
 

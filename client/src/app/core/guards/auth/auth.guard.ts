@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private loginService: LoginService) {}
 
   public canActivate(): boolean {
-    if (this.loginService.loggedInStatus) {
+    if (localStorage.getItem("token")) {
       return true;
     }
 

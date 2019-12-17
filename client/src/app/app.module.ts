@@ -2,6 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
 import { BaseLayoutModule } from "@pages/base-layout/base-layout.module";
 import { HeaderModule } from "@pages/header/header.module";
 import { AppRoutingModule } from "./app-routing.module";
@@ -16,6 +17,7 @@ import { TokenInterceptor } from "./core/interceptors/token.interceptor";
     HttpClientModule,
     NoopAnimationsModule,
     BaseLayoutModule,
+    RouterModule,
     HeaderModule
   ],
   providers: [

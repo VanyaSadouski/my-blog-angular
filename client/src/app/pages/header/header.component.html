@@ -23,7 +23,11 @@
         <button mat-menu-item *ngIf="userInfo.role === 'admin'">
           Create post
         </button>
-        <button mat-menu-item *ngIf="userInfo.role === 'admin'">
+        <button
+          [routerLink]="['/category/create']"
+          mat-menu-item
+          *ngIf="userInfo.role === 'admin'"
+        >
           Create category
         </button>
       </mat-menu>

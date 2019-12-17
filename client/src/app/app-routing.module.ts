@@ -16,6 +16,12 @@ const routes: Routes = [
       },
 
       {
+        path: "category",
+        loadChildren: "./pages/category/category.module#CategoryModule",
+        canActivate: [AuthGuard]
+      },
+
+      {
         path: "",
         pathMatch: "full",
         redirectTo: "home"

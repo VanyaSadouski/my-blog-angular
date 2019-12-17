@@ -11,18 +11,16 @@ const apiUrl = "http://localhost:3000/api/auth/";
 })
 export class LoginService {
   @Output() isLoggedIn: EventEmitter<any> = new EventEmitter();
-  loggedInStatus = false;
+  loggedInStatus = localStorage.getItem("token");
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  public user: object;
+  public user = JSON.parse(localStorage.getItem("user"));
 
   login(data: any): Observable<any> {
     return this.http.post<any>(apiUrl + "login", data).pipe(
       tap(userInfo => {
         this.isLoggedIn.emit(true);
-        this.loggedInStatus = true;
-        this.user = userInfo.user;
       }),
       catchError(this.handleError("login", []))
     );
@@ -32,8 +30,8 @@ export class LoginService {
     return this.http.post<any>(apiUrl + "logout", {}).pipe(
       tap(() => {
         this.isLoggedIn.emit(false);
-        this.loggedInStatus = false;
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         this.router.navigate(["auth/login"]);
       }),
       catchError(this.handleError("logout", []))

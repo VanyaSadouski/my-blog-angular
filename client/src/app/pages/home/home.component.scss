@@ -1,3 +1,13 @@
-li + li {
-  color: beige;
+:host {
+  display: block;
+  min-height: 100%;
+  background: url(../../../assets/images/mountain.jpg);
+  background-size: cover;
+
+  button {
+    margin: 27% 0;
+    background: #f7fbfc;
+    font-size: 3em;
+    height: 68px;
+  }
 }
