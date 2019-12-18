@@ -1,21 +1,19 @@
-<mat-card>
+<mat-card class="section-padding-x">
   <mat-card-header class="mb-4">
-    <mat-card-title>
-      <mat-card-title> Create category</mat-card-title>
-    </mat-card-title>
+    <mat-card-title> Create category</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="form" *ngIf="form">
+    <form [formGroup]="form" *ngIf="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="w-100 mb-3">
         <input
           matInput
           placeholder="Category*"
-          formControlName="category"
+          formControlName="catName"
           autocomplete="off"
           [errorStateMatcher]="formErrorStateMatcher"
         />
-        <mat-error *ngIf="form.get('category').hasError('required')">
+        <mat-error *ngIf="form.get('catName').hasError('required')">
           required field
         </mat-error>
       </mat-form-field>
@@ -23,14 +21,24 @@
       <mat-form-field class="w-100 mb-3">
         <input
           matInput
-          placeholder="description*"
-          formControlName="description"
+          placeholder="Description*"
+          formControlName="catDesc"
           autocomplete="off"
           [errorStateMatcher]="formErrorStateMatcher"
         />
-        <mat-error *ngIf="form.get('description').hasError('required')">
+        <mat-error *ngIf="form.get('catDesc').hasError('required')">
           required field
         </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100 mb-3">
+        <input
+          matInput
+          placeholder="Image Url"
+          formControlName="catImgUrl"
+          autocomplete="off"
+          [errorStateMatcher]="formErrorStateMatcher"
+        />
       </mat-form-field>
 
       <div class="d-flex justify-content-end mt-5">
@@ -38,7 +46,12 @@
           Save
         </button>
 
-        <button class="btn-actions" type="button" mat-raised-button>
+        <button
+          (click)="onCancel()"
+          class="btn-actions"
+          type="button"
+          mat-raised-button
+        >
           Cancel
         </button>
       </div>

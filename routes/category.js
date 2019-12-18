@@ -7,7 +7,7 @@ var router = express.Router();
 var Category = require("../models/Category-model");
 
 router.get(
-  "/",
+  "/category-list",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     var token = getToken(req.headers);
@@ -45,7 +45,7 @@ router.get(
 );
 
 router.post(
-  "/",
+  "/create",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
     var token = getToken(req.headers);
