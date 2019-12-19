@@ -5,12 +5,22 @@
 
 .blog-header {
   .logo-block {
+    width: 65px;
+    cursor: pointer;
+    &:focus {
+      outline: 0;
+    }
+
     &__blog {
       display: block;
       width: 124px;
       height: 50px;
       background: url("/assets/images/pile-of-dung.png") no-repeat;
       background-size: contain;
+
+      &:focus {
+        outline: 0;
+      }
     }
   }
   .material-icons {

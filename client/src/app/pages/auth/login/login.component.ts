@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginService } from "@core/services";
@@ -11,7 +11,7 @@ import { takeUntil } from "rxjs/operators";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public formErrorStateMatcher = new FormErrorStateMatcher();
   public isHidden = true;
@@ -60,5 +60,10 @@ export class LoginComponent implements OnInit {
 
   public anauthorized() {
     this.isAuthorized = false;
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

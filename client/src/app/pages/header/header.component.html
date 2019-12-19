@@ -3,7 +3,7 @@
     class="blog-header w-100 d-flex justify-content-between align-items-center section-padding-x"
   >
     <div class="logo-block d-flex align-items-center">
-      <div class="logo-block__blog mr-3"></div>
+      <div class="logo-block__blog mr-3" routerLink="/home"></div>
     </div>
 
     <div
@@ -19,7 +19,9 @@
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
         <button mat-menu-item>Posts</button>
-        <button mat-menu-item>Categories</button>
+        <button mat-menu-item [routerLink]="['/category/list']">
+          Categories
+        </button>
         <button mat-menu-item *ngIf="userInfo.role === 'admin'">
           Create post
         </button>
@@ -31,7 +33,7 @@
           Create category
         </button>
       </mat-menu>
-      <div class="blog-header__logout-btn" matTooltip="Выйти">
+      <div class="blog-header__logout-btn" matTooltip="Logout">
         <i class="material-icons" (click)="onLogout()">
           input
         </i>
