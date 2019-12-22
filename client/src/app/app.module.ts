@@ -8,6 +8,7 @@ import { HeaderModule } from "@pages/header/header.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { TokenInterceptor } from "./core/interceptors/token.interceptor";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { TokenInterceptor } from "./core/interceptors/token.interceptor";
     NoopAnimationsModule,
     BaseLayoutModule,
     RouterModule,
-    HeaderModule
+    HeaderModule,
+    SharedModule
   ],
   providers: [
     {

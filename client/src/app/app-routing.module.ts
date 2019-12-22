@@ -22,6 +22,12 @@ const routes: Routes = [
       },
 
       {
+        path: "posts",
+        loadChildren: "./pages/posts/posts.module#PostsModule",
+        canActivate: [AuthGuard]
+      },
+
+      {
         path: "",
         pathMatch: "full",
         redirectTo: "home"

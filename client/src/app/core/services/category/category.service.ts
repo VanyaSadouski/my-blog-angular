@@ -18,10 +18,9 @@ export class CategoryService {
   }
 
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl + "category-list").pipe(
-      tap(_ => this.log("fetched Categories")),
-      catchError(this.handleError("getCategories", []))
-    );
+    return this.http
+      .get<any[]>(apiUrl + "category-list")
+      .pipe(catchError(this.handleError("getCategories", [])));
   }
 
   updateCategory(id: any, category: any): Observable<any> {

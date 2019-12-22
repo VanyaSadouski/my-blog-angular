@@ -4,7 +4,7 @@ require("../config/passport")(passport);
 var express = require("express");
 var jwt = require("jsonwebtoken");
 var router = express.Router();
-var Post = require("../models/Category-model");
+var Post = require("../models/Post-model");
 
 router.get(
   "/",
