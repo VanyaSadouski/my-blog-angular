@@ -1,6 +1,6 @@
 export interface IPost {
   category: string;
-  id: string;
+  _id: string;
   postTitle: string;
   postDesc: string;
   postContent: string;

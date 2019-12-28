@@ -7,6 +7,7 @@ import { EditorModule } from "@tinymce/tinymce-angular";
 import { SharedModule } from "app/shared/shared.module";
 import { PostsAddComponent } from "./posts-add/posts-add.component";
 import { PostsRoutingModule } from "./posts-routing.module";
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { PostsRoutingModule } from "./posts-routing.module";
     SharedModule,
     EditorModule
   ],
-  declarations: [PostsAddComponent]
+  declarations: [PostsAddComponent, PostListComponent]
 })
 export class PostsModule {}

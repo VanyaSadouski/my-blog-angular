@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
-import { CategoryService } from "@core/services/category/category.service";
+import { PostService } from "@core/services/post/post.service";
 import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
-export class CategoryByIdResolver implements Resolve<any> {
-  constructor(private categoryService: CategoryService) {}
+export class PostListByCategoryResolver implements Resolve<any> {
+  constructor(private postService: PostService) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<any> {
     const id = route.paramMap.get("categoryId");
-    return this.categoryService.getCategory(id);
+    return this.postService.getPostsByCategory(id);
   }
 }

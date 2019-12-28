@@ -23,7 +23,23 @@ router.get(
 );
 
 router.get(
-  "/:id",
+  "/:category",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.find({ category: req.params.category }, (err, posts) => {
+        if (err) return next(err);
+        res.json(posts);
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized." });
+    }
+  }
+);
+
+router.get(
+  "/post/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
     var token = getToken(req.headers);

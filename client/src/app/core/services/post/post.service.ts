@@ -19,8 +19,16 @@ export class PostService {
     );
   }
 
+  getPostsByCategory(category: string): Observable<IPost[]> {
+    const url = `${apiUrl}${category}`;
+    return this.http.get<IPost[]>(url).pipe(
+      tap(_ => this.log("fetched Posts")),
+      catchError(this.handleError("getPosts", []))
+    );
+  }
+
   getPost(id: any): Observable<IPost> {
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}/post/${id}`;
     return this.http.get<IPost>(url).pipe(
       tap(_ => console.log(`fetched post by id=${id}`)),
       catchError(this.handleError<IPost>(`getPost id=${id}`))
@@ -29,7 +37,7 @@ export class PostService {
 
   addPost(post: Partial<IPost>): Observable<IPost> {
     return this.http.post<IPost>(apiUrl, post).pipe(
-      tap((prod: IPost) => console.log(`added post w/ id=${post.id}`)),
+      tap((prod: IPost) => console.log(`added post w/ id=${post._id}`)),
       catchError(this.handleError<IPost>("addPost"))
     );
   }
