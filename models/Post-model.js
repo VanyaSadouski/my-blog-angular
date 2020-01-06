@@ -10,6 +10,7 @@ var PostSchema = new mongoose.Schema(
     postContent: String,
     postImgUrl: String,
     likes: Number,
+    likedByUsers: Array,
     created: { type: Date },
     updated: { type: Date, default: Date.now }
   },

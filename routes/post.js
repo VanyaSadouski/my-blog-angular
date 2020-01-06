@@ -54,6 +54,75 @@ router.get(
   }
 );
 
+router.get(
+  "/isLiked/:user/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.findById(req.params.id, (err, post) => {
+        if (err) return next(err);
+        if (post && post.likedByUsers.includes(req.params.user)) {
+          res.json(true);
+        } else {
+          res.json(false);
+        }
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized." });
+    }
+  }
+);
+
+router.get(
+  "/dislike/:user/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.findById(req.params.id, (err, post) => {
+        if (err) return next(err);
+        if (post) {
+          var newPost = post;
+          var index = newPost.likedByUsers.indexOf(req.params.user);
+          if (index !== -1) {
+            newPost.likedByUsers.splice(index, 1);
+          }
+          Post.findByIdAndUpdate(req.params.id, newPost, (err, post) => {
+            if (err) return next(err);
+            res.json(post);
+          });
+        }
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized." });
+    }
+  }
+);
+
+router.get(
+  "/like/:user/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.findById(req.params.id, (err, post) => {
+        if (err) return next(err);
+        if (post) {
+          var newPost = post;
+          newPost.likedByUsers.push(req.params.user);
+          Post.findByIdAndUpdate(req.params.id, newPost, (err, post) => {
+            if (err) return next(err);
+            res.json(post);
+          });
+        }
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized." });
+    }
+  }
+);
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

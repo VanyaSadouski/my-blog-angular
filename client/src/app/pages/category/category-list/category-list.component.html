@@ -3,6 +3,11 @@
     <mat-card-title> Category list</mat-card-title>
   </mat-card-header>
 
+    <div class="no-list"
+         *ngIf="!categories?.length">
+      No categories :(
+    </div>
+
   <mat-card-content class="list" *ngIf="categories?.length">
     <div class="list-item" *ngFor="let item of categories">
       <div

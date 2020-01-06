@@ -8,6 +8,7 @@ import { SharedModule } from "app/shared/shared.module";
 import { PostsAddComponent } from "./posts-add/posts-add.component";
 import { PostsRoutingModule } from "./posts-routing.module";
 import { PostListComponent } from './post-list/post-list.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { PostListComponent } from './post-list/post-list.component';
     SharedModule,
     EditorModule
   ],
-  declarations: [PostsAddComponent, PostListComponent]
+  declarations: [PostsAddComponent, PostListComponent, PostDetailsComponent]
 })
 export class PostsModule {}

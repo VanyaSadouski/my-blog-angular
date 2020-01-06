@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CategoryListResolver } from "@core/resolvers/category-list.resolver";
 import { PostByIdResolver } from "@core/resolvers/post-by-id.resolver";
 import { PostListByCategoryResolver } from "@core/resolvers/post-list-by-category.resolver";
+import { PostDetailsComponent } from "./post-details/post-details.component";
 import { PostListComponent } from "./post-list/post-list.component";
 import { PostsAddComponent } from "./posts-add/posts-add.component";
 
@@ -23,6 +24,14 @@ const routes: Routes = [
     resolve: {
       post: PostByIdResolver,
       categories: CategoryListResolver
+    }
+  },
+  {
+    path: "details/:postId",
+    component: PostDetailsComponent,
+    runGuardsAndResolvers: "always",
+    resolve: {
+      post: PostByIdResolver
     }
   },
   {

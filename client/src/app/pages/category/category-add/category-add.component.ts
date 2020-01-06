@@ -51,6 +51,9 @@ export class CategoryAddComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
     if (this.isEditPage) {
       this.categoryService
         .updateCategory(this.id, this.form.value)

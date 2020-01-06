@@ -13,6 +13,7 @@
         *ngIf="item.postImgUrl"
         class="list-item__image"
         [style.background]="'url(' + item.postImgUrl + ')'"
+        [routerLink]="['/posts/details', item._id]"
       ></div>
       <div class="list-item__image no-image" *ngIf="!item.postImgUrl"></div>
       <div class="list-item__info">

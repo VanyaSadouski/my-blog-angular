@@ -8,4 +8,5 @@ export interface IPost {
   created: Date;
   updated: Date;
   likes: number;
+  likedByUsers: string[];
 }

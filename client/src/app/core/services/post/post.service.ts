@@ -35,11 +35,28 @@ export class PostService {
     );
   }
 
+  dislike(user: string, id: string) {
+    const url = `${apiUrl}/dislike/${user}/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError("dislike", [])));
+  }
+
+  like(user: string, id: string) {
+    const url = `${apiUrl}/like/${user}/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError("like", [])));
+  }
+
   addPost(post: Partial<IPost>): Observable<IPost> {
     return this.http.post<IPost>(apiUrl, post).pipe(
       tap((prod: IPost) => console.log(`added post w/ id=${post._id}`)),
       catchError(this.handleError<IPost>("addPost"))
     );
+  }
+
+  isLikedPostByUser(user: string, id: string) {
+    const url = `${apiUrl}/isLiked/${user}/${id}`;
+    return this.http
+      .get(url)
+      .pipe(catchError(this.handleError("isLikedPostByUser", [])));
   }
 
   updatePost(id: any, post: IPost): Observable<any> {

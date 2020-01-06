@@ -51,7 +51,9 @@ export class PostsAddComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(pluck("post"), takeUntil(this.destroy$))
       .subscribe(data => {
-        this.id = data._id;
+        if (!data) {
+          return;
+        }
         this.isEditPage = true;
         this.form.patchValue({
           postTitle: data.postTitle,
@@ -74,6 +76,9 @@ export class PostsAddComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
     if (this.isEditPage) {
       this.postService
         .updatePost(this.id, this.form.value)

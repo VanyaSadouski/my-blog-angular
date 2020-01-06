@@ -1,0 +1,32 @@
+<div class="post__image-wrapper d-flex" *ngIf="post.postImgUrl">
+  <img [src]="post.postImgUrl" alt="post-title-image" />
+  <div class="post__image-title">
+    <div class="mb-3">{{ post?.postTitle }}</div>
+    <div class="post__image-description">{{ post?.postDesc }}</div>
+  </div>
+</div>
+<mat-card>
+  <div class="section-padding-x post">
+    <mat-card-header class=" my-3" *ngIf="!post.postImgUrl">
+      <mat-card-title class="mb-3"> {{ post?.postTitle }} </mat-card-title>
+      <div>{{ post?.postDesc }}</div>
+    </mat-card-header>
+    <div [innerHTML]="post.postContent | sanitizeHtml" class="initial"></div>
+
+    <mat-card-content> </mat-card-content>
+  </div>
+</mat-card>
+
+<footer class="section-padding-x">
+  <img
+    (click)="onFavorite()"
+    class="favorite-btn__icon"
+    [src]="
+      isFavorite
+        ? 'assets/svgs/favorite-black.svg'
+        : 'assets/svgs/favorite-white.svg'
+    "
+    alt="favorite.svg"
+  />
+  {{ likes }}
+</footer>
