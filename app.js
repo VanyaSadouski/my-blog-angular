@@ -10,8 +10,7 @@ var post = require("./routes/post");
 var cors = require("cors");
 
 mongoose
-  .connect("mongodb://localhost/MyBlog", {
-    promiseLibrary: require("bluebird"),
+  .connect("mongodb+srv://Sadouski:6960805@myblog-mbpfr.mongodb.net/myBlog", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
