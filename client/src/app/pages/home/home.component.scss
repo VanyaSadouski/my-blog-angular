@@ -1,13 +1,31 @@
 :host {
-  display: block;
-  min-height: 100%;
-  background: url(../../../assets/images/mountain.jpg);
-  background-size: cover;
+  .head {
+    display: block;
+    min-height: 100%;
+    background: url(../../../assets/images/mountain.jpg);
+    background-size: cover;
 
-  button {
-    margin: 27% 0;
-    background: #f7fbfc;
-    font-size: 3em;
-    height: 68px;
+    button {
+      margin: 27% 0;
+      background: #f7fbfc;
+      font-size: 3em;
+      height: 68px;
+    }
   }
+
+  .posts {
+    margin: 100px 0;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-list {
+  font-size: 5rem;
+  margin-top: 50px;
+  text-align: center;
 }

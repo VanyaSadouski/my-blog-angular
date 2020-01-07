@@ -2,7 +2,7 @@
   <mat-card class="w-50 mx-auto">
     <mat-card-content class="d-flex justify-content-center  mb-4">
       <form class="w-75 d-flex flex-wrap" [formGroup]="form" autocomplete="off">
-        <div *ngIf="!isAuthorized" class="auth-error">Попробуйте снова</div>
+        <div *ngIf="!isAuthorized" class="auth-error">Try again</div>
         <mat-form-field class="w-100">
           <input
             matInput
@@ -11,7 +11,7 @@
             [errorStateMatcher]="formErrorStateMatcher"
           />
           <mat-error *ngIf="form.get('username').hasError('required')">
-            Поле <strong>Обязательно</strong>
+            required field
           </mat-error>
         </mat-form-field>
 
@@ -34,17 +34,17 @@
           </mat-icon>
 
           <mat-error *ngIf="form.get('password').hasError('required')">
-            Поле <strong>Обязательно</strong>
+            required field
           </mat-error>
         </mat-form-field>
         <div>
           <a class="auth__register-link" (click)="toRegistration()">
-            Регистрация
+            Registration
           </a>
         </div>
 
         <div class="w-100 d-flex justify-content-end">
-          <button mat-raised-button (click)="onSubmit()">Войти</button>
+          <button mat-raised-button (click)="onSubmit()">Login</button>
         </div>
       </form>
     </mat-card-content>

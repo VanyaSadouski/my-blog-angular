@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { LoginService } from "@core/services";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { IPost } from "@core/models/post";
+import { PostService } from "@core/services";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -7,7 +9,22 @@ import { LoginService } from "@core/services";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
+  public posts: Observable<IPost[]>;
+  @ViewChild("mostLikedPosts", {
+    static: true
+  })
+  public mostLikedPosts;
+  constructor(private postService: PostService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.posts = this.postService.getMostLikedPosts();
+  }
+
+  public toPosts() {
+    this.mostLikedPosts.nativeElement.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest"
+    });
+  }
 }

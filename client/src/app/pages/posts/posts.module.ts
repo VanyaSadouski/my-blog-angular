@@ -5,10 +5,11 @@ import { RouterModule } from "@angular/router";
 import { MaterialModule } from "@core/material";
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { SharedModule } from "app/shared/shared.module";
+import { PostDetailsComponent } from "./post-details/post-details.component";
+import { PostListComponent } from "./post-list/post-list.component";
+import { PostTileComponent } from "./post-tile/post-tile.component";
 import { PostsAddComponent } from "./posts-add/posts-add.component";
 import { PostsRoutingModule } from "./posts-routing.module";
-import { PostListComponent } from './post-list/post-list.component';
-import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,12 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     SharedModule,
     EditorModule
   ],
-  declarations: [PostsAddComponent, PostListComponent, PostDetailsComponent]
+  declarations: [
+    PostsAddComponent,
+    PostListComponent,
+    PostDetailsComponent,
+    PostTileComponent
+  ],
+  exports: [PostTileComponent]
 })
 export class PostsModule {}

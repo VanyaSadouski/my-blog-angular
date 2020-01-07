@@ -15,19 +15,21 @@
             [errorStateMatcher]="formErrorStateMatcher"
           />
           <mat-error *ngIf="form.get('username').hasError('required')">
-            Поле <strong>Обязательно</strong>
+            required field
           </mat-error>
         </mat-form-field>
 
-          <mat-form-field class="w-100">
-            <input matInput
-                   placeholder="Email*"
-                   formControlName="email"
-                   [errorStateMatcher]="formErrorStateMatcher" />
-            <mat-error *ngIf="form.get('email').hasError('required')">
-              Поле <strong>Обязательно</strong>
-            </mat-error>
-          </mat-form-field>
+        <mat-form-field class="w-100">
+          <input
+            matInput
+            placeholder="Email*"
+            formControlName="email"
+            [errorStateMatcher]="formErrorStateMatcher"
+          />
+          <mat-error *ngIf="form.get('email').hasError('required')">
+            required field
+          </mat-error>
+        </mat-form-field>
 
         <mat-form-field class="w-100">
           <input
@@ -40,17 +42,17 @@
           />
 
           <mat-error *ngIf="form.get('password').hasError('required')">
-            Поле <strong>Обязательно</strong>
+            required field
           </mat-error>
         </mat-form-field>
         <div>
           <a class="auth__register-link" (click)="toLogin()">
-            Авторизация
+            Login
           </a>
         </div>
 
         <div class="w-100 d-flex justify-content-end">
-          <button mat-raised-button type="submit">Зарегистрировать</button>
+          <button mat-raised-button type="submit">Register</button>
         </div>
       </form>
     </mat-card-content>

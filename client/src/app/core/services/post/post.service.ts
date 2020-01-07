@@ -35,6 +35,13 @@ export class PostService {
     );
   }
 
+  getMostLikedPosts() {
+    const url = `${apiUrl}/most-liked-list`;
+    return this.http
+      .get<IPost[]>(url)
+      .pipe(catchError(this.handleError<IPost[]>("getMostLikedPosts")));
+  }
+
   dislike(user: string, id: string) {
     const url = `${apiUrl}/dislike/${user}/${id}`;
     return this.http.get(url).pipe(catchError(this.handleError("dislike", [])));

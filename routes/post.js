@@ -23,6 +23,32 @@ router.get(
 );
 
 router.get(
+  "/most-liked-list",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.find((err, posts) => {
+        if (err) {
+          return next(err);
+        }
+        if (posts) {
+          let sortedPosts = posts.sort((a, b) =>
+            a.likedByUsers.length < b.likedByUsers.length ? 1 : -1
+          );
+
+          sortedPosts = sortedPosts.slice(0, 3);
+
+          res.json(sortedPosts);
+        }
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized :(" });
+    }
+  }
+);
+
+router.get(
   "/:category",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {

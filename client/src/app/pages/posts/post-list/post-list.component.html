@@ -8,39 +8,6 @@
   </div>
 
   <mat-card-content class="list" *ngIf="posts?.length">
-    <div class="list-item" *ngFor="let item of posts">
-      <div
-        *ngIf="item.postImgUrl"
-        class="list-item__image"
-        [style.background]="'url(' + item.postImgUrl + ')'"
-        [routerLink]="['/posts/details', item._id]"
-      ></div>
-      <div class="list-item__image no-image" *ngIf="!item.postImgUrl"></div>
-      <div class="list-item__info">
-        <div class="list-item__info-name">{{ item.postTitle }}</div>
-        <div class="list-item__info-description">{{ item.postDesc }}</div>
-        <div class="list-item__info-date">{{ item.updated | date }}</div>
-        <div class="list-item__info-buttons" *ngIf="userInfo.role === 'admin'">
-          <button
-            matTooltip="Edit"
-            class="list-item__info-buttons-edit"
-            type="button"
-            mat-raised-button
-            [routerLink]="['/posts/edit', item._id]"
-          >
-            <mat-icon class="material-icons">edit</mat-icon>
-          </button>
-          <button
-            matTooltip="Delete"
-            class="list-item__info-buttons-delete"
-            type="button"
-            mat-raised-button
-            (click)="deletePost(item._id)"
-          >
-            <mat-icon class="material-icons">delete</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
+    <app-post-tile [posts]="posts" class="w-100"></app-post-tile>
   </mat-card-content>
 </div>
