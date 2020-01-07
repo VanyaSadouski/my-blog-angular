@@ -58,6 +58,7 @@ export class PostsAddComponent implements OnInit, OnDestroy {
           return;
         }
         this.isEditPage = true;
+        this.id = data._id;
         this.form.patchValue({
           postTitle: data.postTitle,
           postDesc: data.postDesc,
