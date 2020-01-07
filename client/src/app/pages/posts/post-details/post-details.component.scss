@@ -48,13 +48,22 @@
 
       .comment {
         margin: 10px 0;
-        background: #1bb3dc;
-        border-radius: 7px;
-        padding: 7px;
 
         &-username {
           font-size: 1.1rem;
           font-weight: bold;
+        }
+
+        &-date {
+          font-size: 0.8rem;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        &-content {
+          background: #1bb3dc;
+          border-radius: 7px;
+          padding: 7px;
         }
       }
     }

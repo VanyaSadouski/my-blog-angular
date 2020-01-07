@@ -60,8 +60,12 @@
         <ng-container *ngFor="let comment of post?.comments">
           <div class="comment">
             <div class="comment-username">{{ comment.name }}</div>
-            <div class="comment-info">{{ comment.comment }}</div>
-            <div class="comment-date">{{ comment.date | date: "medium" }}</div>
+            <div class="comment-content">
+              <div class="comment-info">{{ comment.comment }}</div>
+              <div class="comment-date">
+                {{ comment.date | date: "medium" }}
+              </div>
+            </div>
           </div>
         </ng-container>
       </div>
