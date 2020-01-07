@@ -45,6 +45,9 @@ export class PostsAddComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(pluck("categories"), takeUntil(this.destroy$))
       .subscribe(data => {
+        if (!data) {
+          this.router.navigate(["/category/create"]);
+        }
         this.categories = data;
       });
 

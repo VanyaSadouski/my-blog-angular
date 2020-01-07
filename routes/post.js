@@ -55,8 +55,11 @@ router.get(
     var token = getToken(req.headers);
     if (token) {
       Post.find({ category: req.params.category }, (err, posts) => {
-        if (err) return next(err);
-        res.json(posts);
+        if (posts) {
+          res.json(posts);
+        } else {
+          res.json([]);
+        }
       });
     } else {
       return res.status(403).send({ success: false, msg: "Unauthorized." });

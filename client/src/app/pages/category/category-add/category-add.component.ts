@@ -32,7 +32,9 @@ export class CategoryAddComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(pluck("category"), takeUntil(this.destroy$))
       .subscribe(data => {
-        this.id = data._id;
+        if (!data) {
+          return;
+        }
         this.isEditPage = true;
         this.form.patchValue({
           catName: data.catName,

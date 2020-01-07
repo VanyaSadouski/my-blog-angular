@@ -4,7 +4,6 @@ var mongoose = require("mongoose"),
 var PostSchema = new mongoose.Schema(
   {
     category: { type: Schema.Types.ObjectId, ref: "Category" },
-    id: String,
     postTitle: String,
     postDesc: String,
     postContent: String,
@@ -13,7 +12,8 @@ var PostSchema = new mongoose.Schema(
     likedByUsers: Array,
     created: { type: Date },
     updated: { type: Date, default: Date.now },
-    comments: []
+    comments: [],
+
   },
   {
     versionKey: false,
