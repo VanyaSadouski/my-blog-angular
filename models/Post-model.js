@@ -12,7 +12,8 @@ var PostSchema = new mongoose.Schema(
     likes: Number,
     likedByUsers: Array,
     created: { type: Date },
-    updated: { type: Date, default: Date.now }
+    updated: { type: Date, default: Date.now },
+    comments: []
   },
   {
     versionKey: false,

@@ -1,5 +1,5 @@
-<div class="post__image-wrapper d-flex" *ngIf="post.postImgUrl">
-  <img [src]="post.postImgUrl" alt="post-title-image" />
+<div class="post__image-wrapper d-flex" *ngIf="post?.postImgUrl">
+  <img [src]="post?.postImgUrl" alt="post-title-image" />
   <div class="post__image-title">
     <div class="mb-3">{{ post?.postTitle }}</div>
     <div class="post__image-description">{{ post?.postDesc }}</div>
@@ -7,17 +7,17 @@
 </div>
 <mat-card>
   <div class="section-padding-x post">
-    <mat-card-header class=" my-3" *ngIf="!post.postImgUrl">
+    <mat-card-header class=" my-3" *ngIf="!post?.postImgUrl">
       <mat-card-title class="mb-3"> {{ post?.postTitle }} </mat-card-title>
       <div>{{ post?.postDesc }}</div>
     </mat-card-header>
-    <div [innerHTML]="post.postContent | sanitizeHtml" class="initial"></div>
+    <div [innerHTML]="post?.postContent | sanitizeHtml" class="initial"></div>
 
     <mat-card-content> </mat-card-content>
   </div>
 </mat-card>
 
-<footer class="section-padding-x">
+<div class="section-padding-x likes">
   <img
     (click)="onFavorite()"
     class="favorite-btn__icon"
@@ -29,4 +29,42 @@
     alt="favorite.svg"
   />
   {{ likes }}
-</footer>
+</div>
+<mat-card>
+  <div class="comments-block section-padding-x">
+    <div class="comments-block__add">
+      <form [formGroup]="form" *ngIf="form" (ngSubmit)="onAddComment()">
+        <mat-form-field class="w-100 mb-3">
+          <textarea
+            matInput
+            placeholder="Comment*"
+            formControlName="comment"
+            autocomplete="off"
+            [errorStateMatcher]="formErrorStateMatcher"
+          ></textarea>
+          <mat-error *ngIf="form.get('comment').hasError('required')">
+            required field
+          </mat-error>
+        </mat-form-field>
+
+        <button class="btn-actions mr-3" type="submit" mat-raised-button>
+          Add comment
+        </button>
+      </form>
+    </div>
+    <div class="comments-block__list">
+      <div class="no-comments" *ngIf="!post?.comments.length">
+        No comments
+      </div>
+      <div class="comments" *ngIf="post?.comments.length">
+        <ng-container *ngFor="let comment of post?.comments">
+          <div class="comment">
+            <div class="comment-username">{{ comment.name }}</div>
+            <div class="comment-info">{{ comment.comment }}</div>
+            <div class="comment-date">{{ comment.date | date: "medium" }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,21 +1,21 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 @include mat-core();
 $primary: (
   50: #fffde7,
   100: #fff9c4,
   200: #fff59d,
-  300: #fff176,
-  400: #ffee58,
-  500: #fbc02d,
-  600: #fdd835,
-  700: #fbc02d,
-  800: #f9a825,
+  300: #1bb3dc,
+  400: #1bb3dc,
+  500: #1bb3dc,
+  600: #1bb3dc,
+  700: #1bb3dc,
+  800: #1bb3dc,
   900: #f57f17,
-  A100: #ffff8d,
-  A200: #ff0,
-  A400: #ffea00,
-  A700: #ffd600,
+  A100: #1bb3dc,
+  A200: #1bb3dc,
+  A400: #1bb3dc,
+  A700: #1bb3dc,
   contrast: (
     50: $black-87-opacity,
     100: $black-87-opacity,
@@ -30,8 +30,8 @@ $primary: (
     A100: $black-87-opacity,
     A200: white,
     A400: white,
-    A700: white,
-  ),
+    A700: white
+  )
 );
 $accent: (
   50: #fafafa,
@@ -58,8 +58,8 @@ $accent: (
     A100: $black-87-opacity,
     A200: white,
     A400: white,
-    A700: white,
-  ),
+    A700: white
+  )
 );
 $warn: ($mat-red);
 $app-primary: mat-palette($primary);
@@ -70,23 +70,23 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @include angular-material-theme($app-theme);
 
 @font-face {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/material/MaterialIcons-Regular.eot');
-  src: local('Material Icons'), local('MaterialIcons-Regular'),
-    url('/assets/fonts/material/MaterialIcons-Regular.woff2') format('woff2'),
-    url('/assets/fonts/material/MaterialIcons-Regular.woff') format('woff'),
-    url('/assets/fonts/material/MaterialIcons-Regular.ttf') format('truetype');
+  src: url("/assets/fonts/material/MaterialIcons-Regular.eot");
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url("/assets/fonts/material/MaterialIcons-Regular.woff2") format("woff2"),
+    url("/assets/fonts/material/MaterialIcons-Regular.woff") format("woff"),
+    url("/assets/fonts/material/MaterialIcons-Regular.ttf") format("truetype");
 }
 
 .material-icons {
   display: inline-block;
   direction: ltr;
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
 
   /* Support for IE. */
-  font-feature-settings: 'liga';
+  font-feature-settings: "liga";
   font-size: 24px;
 
   /* Support for Firefox. */

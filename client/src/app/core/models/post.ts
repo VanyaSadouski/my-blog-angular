@@ -1,3 +1,5 @@
+import { IComment } from "./comment";
+
 export interface IPost {
   category: string;
   _id: string;
@@ -9,4 +11,5 @@ export interface IPost {
   updated: Date;
   likes: number;
   likedByUsers: string[];
+  comments: IComment[];
 }

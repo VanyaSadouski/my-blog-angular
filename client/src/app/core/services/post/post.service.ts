@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { IComment } from "@core/models/comment";
 import { IPost } from "@core/models/post";
 import { Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
@@ -45,6 +46,13 @@ export class PostService {
   dislike(user: string, id: string) {
     const url = `${apiUrl}/dislike/${user}/${id}`;
     return this.http.get(url).pipe(catchError(this.handleError("dislike", [])));
+  }
+
+  addComment(id: string, comment: IComment) {
+    const url = `${apiUrl}/comment/${id}`;
+    return this.http
+      .post(url, comment)
+      .pipe(catchError(this.handleError("addComment")));
   }
 
   like(user: string, id: string) {

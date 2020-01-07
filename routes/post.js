@@ -150,6 +150,29 @@ router.get(
 );
 
 router.post(
+  "/comment/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    var token = getToken(req.headers);
+    if (token) {
+      Post.findById(req.params.id, (err, post) => {
+        if (err) return next(err);
+        if (post) {
+          var newPost = post;
+          newPost.comments.push(req.body);
+          Post.findByIdAndUpdate(req.params.id, newPost, (err, post) => {
+            if (err) return next(err);
+            res.json(post);
+          });
+        }
+      });
+    } else {
+      return res.status(403).send({ success: false, msg: "Unauthorized." });
+    }
+  }
+);
+
+router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
