@@ -14,77 +14,80 @@ router.post("/register", (req, res) => {
   if (!req.body.username || !req.body.password || !req.body.email) {
     res.json({ success: false, msg: "Please pass username and password :(" });
   } else {
-    User.findOne({ email: req.body.email }, function(err, user) {
-      if (user) {
-        return res.status(400).send({
-          msg:
-            "The email address you have entered is already associated with another account."
-        });
-      }
-
-      var newUser = new User({
-        password: req.body.password,
-        username: req.body.username,
-        email: req.body.email,
-        role: "user"
-      });
-      newUser.save(err => {
-        if (err) {
+    User.findOne(
+      { email: req.body.email, username: req.body.username },
+      function(err, user) {
+        if (user) {
           return res.json({
             success: false,
             msg: "Username or email exists:("
           });
         }
-        var token = new Token({
-          _userId: newUser._id,
-          token: crypto.randomBytes(16).toString("hex")
-        });
 
-        token.save(function(err) {
+        var newUser = new User({
+          password: req.body.password,
+          username: req.body.username,
+          email: req.body.email,
+          role: "user"
+        });
+        newUser.save(err => {
           if (err) {
-            return res.status(500).send({ msg: err.message });
+            return res.json({
+              success: false,
+              msg: "Username or email exists:("
+            });
           }
-          var transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: "myblogng2019@gmail.com",
-              pass: "testmail2019"
-            }
+          var token = new Token({
+            _userId: newUser._id,
+            token: crypto.randomBytes(16).toString("hex")
           });
 
-          var hostName;
-
-          if (process.env.NODE_ENV !== "production") {
-            hostName = "localhost:4200";
-          } else {
-            hostName = "my-blog-client-angular.herokuapp.com";
-          }
-          var mailOptions = {
-            from: "myblogng2019@gmail.com",
-            to: newUser.email,
-            subject: "Account Verification Token for MyBlog",
-            text:
-              "Hello,\n\n" +
-              "Please verify your account by clicking the link: \nhttp://" +
-              hostName +
-              "/auth/confirmation/" +
-              token.token +
-              ".\n"
-          };
-
-          transporter.sendMail(mailOptions, function(err) {
+          token.save(function(err) {
             if (err) {
               return res.status(500).send({ msg: err.message });
             }
-            res
-              .status(200)
-              .send(
-                "A verification email has been sent to " + newUser.email + "."
-              );
+            var transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: "myblogng2019@gmail.com",
+                pass: "testmail2019"
+              }
+            });
+
+            var hostName;
+
+            if (process.env.NODE_ENV !== "production") {
+              hostName = "localhost:4200";
+            } else {
+              hostName = "my-blog-client-angular.herokuapp.com";
+            }
+            var mailOptions = {
+              from: "myblogng2019@gmail.com",
+              to: newUser.email,
+              subject: "Account Verification Token for MyBlog",
+              text:
+                "Hello,\n\n" +
+                "Please verify your account by clicking the link: \nhttp://" +
+                hostName +
+                "/auth/confirmation/" +
+                token.token +
+                ".\n"
+            };
+
+            transporter.sendMail(mailOptions, function(err) {
+              if (err) {
+                return res.status(500).send({ msg: err.message });
+              }
+              return res.json({
+                success: true,
+                msg:
+                  "A verification email has been sent to " + newUser.email + "."
+              });
+            });
           });
         });
-      });
-    });
+      }
+    );
   }
 });
 
@@ -147,7 +150,6 @@ router.post("/login", function(req, res) {
               msg: "Authentication failed. Wrong password."
             });
           }
-          console.log(user);
 
           if (!user.isVerified) {
             return res.status(401).send({
