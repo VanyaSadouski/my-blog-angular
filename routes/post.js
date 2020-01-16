@@ -23,12 +23,12 @@ router.get(
 );
 
 router.get(
-  "/most-liked-list",
+  "/most-liked-list/:postLang",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     var token = getToken(req.headers);
     if (token) {
-      Post.find((err, posts) => {
+      Post.find({ postLang: req.params.postLang }, (err, posts) => {
         if (err) {
           return next(err);
         }

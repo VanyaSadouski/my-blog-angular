@@ -13,7 +13,7 @@ var PostSchema = new mongoose.Schema(
     created: { type: Date },
     updated: { type: Date, default: Date.now },
     comments: [],
-
+    postLang: String
   },
   {
     versionKey: false,
