@@ -8,6 +8,7 @@ var auth = require("./routes/auth");
 var category = require("./routes/category");
 var post = require("./routes/post");
 var cors = require("cors");
+require("dotenv").config();
 
 mongoose
   .connect("mongodb+srv://Sadouski:6960805@myblog-mbpfr.mongodb.net/myBlog", {
