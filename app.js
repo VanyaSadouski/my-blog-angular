@@ -13,7 +13,7 @@ var app = express();
 
 app.use(cors());
 mongoose
-  .connect(process.env.mongoCreds, {
+  .connect(process.env.mongoCreds.toString(), {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
