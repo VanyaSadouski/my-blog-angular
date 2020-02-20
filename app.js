@@ -10,6 +10,7 @@ var post = require("./routes/post");
 var cors = require("cors");
 require("dotenv").config();
 
+app.use(cors());
 mongoose
   .connect(process.env.mongoCreds, {
     useNewUrlParser: true,
@@ -24,7 +25,6 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
-app.use(cors());
 app.use(passport.initialize());
 app.use(logger("dev"));
 app.use(express.json());
