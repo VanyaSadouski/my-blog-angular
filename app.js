@@ -8,7 +8,7 @@ var auth = require("./routes/auth");
 var category = require("./routes/category");
 var post = require("./routes/post");
 var cors = require("cors");
-require("dotenv").config();
+require("dotenv").load();
 var app = express();
 
 app.use(cors());
