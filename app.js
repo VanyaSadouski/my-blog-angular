@@ -9,6 +9,7 @@ var category = require("./routes/category");
 var post = require("./routes/post");
 var cors = require("cors");
 require("dotenv").config();
+var app = express();
 
 app.use(cors());
 mongoose
@@ -22,8 +23,6 @@ mongoose
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
-var app = express();
 
 app.use(passport.initialize());
 app.use(logger("dev"));
