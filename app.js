@@ -13,12 +13,12 @@ var app = express();
 
 app.use(cors());
 mongoose
-  .connect("mongodb+srv://Sadouski:6960805@myblog-mbpfr.mongodb.net/myBlog", {
+  .connect(process.env.mongoCreds, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
   })
-  .then(() => console.log(String(process.env.mongoCreds)))
+  .then(() => console.log("cool"))
   .catch(error => console.log(error));
 
 var indexRouter = require("./routes/index");
