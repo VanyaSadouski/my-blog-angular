@@ -13,7 +13,7 @@ var app = express();
 
 app.use(cors());
 mongoose
-  .connect(`${process.env.mongoCreds}`, {
+  .connect("mongodb+srv://Sadouski:6960805@myblog-mbpfr.mongodb.net/myBlog", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
