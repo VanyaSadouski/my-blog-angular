@@ -11,11 +11,16 @@ var cors = require("cors");
 require("dotenv").config();
 
 mongoose
-  .connect("mongodb+srv://Sadouski:6960805@myblog-mbpfr.mongodb.net/myBlog", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-  })
+  .connect(
+    "mongodb+srv://" +
+      process.env.mongoCreds +
+      "@myblog-mbpfr.mongodb.net/myBlog",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    }
+  )
   .then(() => console.log("connection ok"))
   .catch(error => console.log(error));
 
